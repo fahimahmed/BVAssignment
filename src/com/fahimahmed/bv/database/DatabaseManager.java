@@ -2,6 +2,8 @@ package com.fahimahmed.bv.database;
 
 import java.util.ArrayList;
 
+import com.boipoka.database.Book;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -38,7 +40,7 @@ public class DatabaseManager {
 	public synchronized void close() {
 		dbHelper.close();
 	}
-	
+
 	public void insertProducts(ArrayList<Product> products) {
 
 		database.beginTransaction();
@@ -73,6 +75,33 @@ public class DatabaseManager {
 		} finally {
 			database.endTransaction();
 		}
+
+	}
+
+	public ArrayList<Product> getAllProducts() {
+
+		ArrayList<Product> products = new ArrayList<Product>();
+
+		Cursor cursor = database.rawQuery("select * from "
+				+ Product.PRODUCT_TABLE, null);
+
+		while (cursor.moveToNext()) {
+
+			Product product = new Product();
+			product.id = cursor.getInt(cursor
+					.getColumnIndex(Product.PRODUCT_ID));
+			product.name = cursor.getString(cursor
+					.getColumnIndex(Product.PRODUCT_NAME));
+			product.price = cursor.getString(cursor
+					.getColumnIndex(Product.PRODUCT_PRICE));
+			product.quantity = cursor.getInt(cursor
+					.getColumnIndex(Product.PRODUCT_QUANTITY));
+			product.isEmailSent = cursor.getInt(cursor
+					.getColumnIndex(Product.PRODUCT_EMAIL_SENT));
+			products.add(product);
+		}
+		cursor.close();
+		return products;
 
 	}
 

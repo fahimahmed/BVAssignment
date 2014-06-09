@@ -9,17 +9,17 @@ public class Product {
 	static String PRODUCT_QUANTITY = "quantity";
 	static String PRODUCT_EMAIL_SENT = "isEmailSent";
 
-	public String id;
+	public int id;
 	public String name;
 	public String price;
 	public int quantity;
-	public boolean isEmailSent;
+	public int isEmailSent;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -47,11 +47,11 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public boolean isEmailSent() {
+	public int isEmailSent() {
 		return isEmailSent;
 	}
 
-	public void setEmailSent(boolean isEmailSent) {
+	public void setEmailSent(int isEmailSent) {
 		this.isEmailSent = isEmailSent;
 	}
 
