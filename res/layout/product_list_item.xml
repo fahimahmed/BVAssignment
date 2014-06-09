@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="100" >
+
+    <LinearLayout
+        android:id="@+id/layoutContents"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="80"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvListProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvListProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvListProductQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgSyncedOrNot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>

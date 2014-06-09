@@ -1,8 +1,8 @@
 package com.fahimahmed.bv.application;
 
-import com.fahimahmed.bv.database.DatabaseManager;
-
 import android.app.Application;
+
+import com.fahimahmed.bv.database.DatabaseManager;
 
 public class BVAssignment extends Application {
 

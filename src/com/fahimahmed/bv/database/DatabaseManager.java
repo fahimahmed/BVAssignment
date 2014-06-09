@@ -2,12 +2,11 @@ package com.fahimahmed.bv.database;
 
 import java.util.ArrayList;
 
-import com.boipoka.database.Book;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class DatabaseManager {
 
@@ -72,8 +71,11 @@ public class DatabaseManager {
 
 			}
 			database.setTransactionSuccessful();
+		}catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			database.endTransaction();
+			Toast.makeText(context, "Data Inserted Successfully!", Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -84,6 +86,7 @@ public class DatabaseManager {
 
 		Cursor cursor = database.rawQuery("select * from "
 				+ Product.PRODUCT_TABLE, null);
+		System.out.println(cursor.getCount());
 
 		while (cursor.moveToNext()) {
 

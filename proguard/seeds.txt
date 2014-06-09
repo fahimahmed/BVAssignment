@@ -2760,42 +2760,72 @@ android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB: SlidingPan
 android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJBMR1: SlidingPaneLayout$SlidingPanelLayoutImplJBMR1()
 android.support.v4.widget.ViewDragHelper$1: ViewDragHelper$1()
 android.support.v4.widget.ViewDragHelper$Callback: ViewDragHelper$Callback()
-com.example.navigationdrawesample.BuildConfig: BuildConfig()
-com.example.navigationdrawesample.MainActivity
-com.example.navigationdrawesample.MainActivity: MainActivity()
-com.example.navigationdrawesample.MainActivity$PlanetFragment: MainActivity$PlanetFragment()
-com.example.navigationdrawesample.R: R()
-com.example.navigationdrawesample.R$array: int planets_array
-com.example.navigationdrawesample.R$array: R$array()
-com.example.navigationdrawesample.R$attr: R$attr()
-com.example.navigationdrawesample.R$drawable: int action_search
-com.example.navigationdrawesample.R$drawable: int drawer_shadow
-com.example.navigationdrawesample.R$drawable: int earth
-com.example.navigationdrawesample.R$drawable: int ic_drawer
-com.example.navigationdrawesample.R$drawable: int ic_launcher
-com.example.navigationdrawesample.R$drawable: int jupiter
-com.example.navigationdrawesample.R$drawable: int mars
-com.example.navigationdrawesample.R$drawable: int mercury
-com.example.navigationdrawesample.R$drawable: int neptune
-com.example.navigationdrawesample.R$drawable: int saturn
-com.example.navigationdrawesample.R$drawable: int uranus
-com.example.navigationdrawesample.R$drawable: int venus
-com.example.navigationdrawesample.R$drawable: R$drawable()
-com.example.navigationdrawesample.R$id: int action_websearch
-com.example.navigationdrawesample.R$id: int content_frame
-com.example.navigationdrawesample.R$id: int drawer_layout
-com.example.navigationdrawesample.R$id: int image
-com.example.navigationdrawesample.R$id: int left_drawer
-com.example.navigationdrawesample.R$id: R$id()
-com.example.navigationdrawesample.R$layout: int activity_main
-com.example.navigationdrawesample.R$layout: int drawer_list_item
-com.example.navigationdrawesample.R$layout: int fragment_planet
-com.example.navigationdrawesample.R$layout: R$layout()
-com.example.navigationdrawesample.R$menu: int main
-com.example.navigationdrawesample.R$menu: R$menu()
-com.example.navigationdrawesample.R$string: int action_websearch
-com.example.navigationdrawesample.R$string: int app_name
-com.example.navigationdrawesample.R$string: int app_not_available
-com.example.navigationdrawesample.R$string: int drawer_close
-com.example.navigationdrawesample.R$string: int drawer_open
-com.example.navigationdrawesample.R$string: R$string()
+com.fahimahmed.bv.BuildConfig: BuildConfig()
+com.fahimahmed.bv.MainActivity
+com.fahimahmed.bv.MainActivity: MainActivity()
+com.fahimahmed.bv.R: R()
+com.fahimahmed.bv.R$array: int menu_array
+com.fahimahmed.bv.R$array: R$array()
+com.fahimahmed.bv.R$attr: R$attr()
+com.fahimahmed.bv.R$drawable: int action_search
+com.fahimahmed.bv.R$drawable: int drawer_shadow
+com.fahimahmed.bv.R$drawable: int earth
+com.fahimahmed.bv.R$drawable: int ic_drawer
+com.fahimahmed.bv.R$drawable: int ic_launcher
+com.fahimahmed.bv.R$drawable: int jupiter
+com.fahimahmed.bv.R$drawable: int mars
+com.fahimahmed.bv.R$drawable: int mercury
+com.fahimahmed.bv.R$drawable: int neptune
+com.fahimahmed.bv.R$drawable: int saturn
+com.fahimahmed.bv.R$drawable: int uranus
+com.fahimahmed.bv.R$drawable: int venus
+com.fahimahmed.bv.R$drawable: R$drawable()
+com.fahimahmed.bv.R$id: int action_websearch
+com.fahimahmed.bv.R$id: int btnSave
+com.fahimahmed.bv.R$id: int content_frame
+com.fahimahmed.bv.R$id: int drawer_layout
+com.fahimahmed.bv.R$id: int etProductName
+com.fahimahmed.bv.R$id: int etProductPrice
+com.fahimahmed.bv.R$id: int etProductQuantity
+com.fahimahmed.bv.R$id: int image
+com.fahimahmed.bv.R$id: int imgSyncedOrNot
+com.fahimahmed.bv.R$id: int layoutContents
+com.fahimahmed.bv.R$id: int left_drawer
+com.fahimahmed.bv.R$id: int list
+com.fahimahmed.bv.R$id: int panelProductName
+com.fahimahmed.bv.R$id: int panelProductPrice
+com.fahimahmed.bv.R$id: int panelProductQuantity
+com.fahimahmed.bv.R$id: int tvListProductName
+com.fahimahmed.bv.R$id: int tvListProductPrice
+com.fahimahmed.bv.R$id: int tvListProductQuantity
+com.fahimahmed.bv.R$id: int tvProductName
+com.fahimahmed.bv.R$id: int tvProductPrice
+com.fahimahmed.bv.R$id: int tvProductQuantity
+com.fahimahmed.bv.R$id: R$id()
+com.fahimahmed.bv.R$layout: int activity_main
+com.fahimahmed.bv.R$layout: int drawer_list_item
+com.fahimahmed.bv.R$layout: int fragment_all_products
+com.fahimahmed.bv.R$layout: int fragment_blank
+com.fahimahmed.bv.R$layout: int fragment_insert_product
+com.fahimahmed.bv.R$layout: int fragment_planet
+com.fahimahmed.bv.R$layout: int product_list_item
+com.fahimahmed.bv.R$layout: R$layout()
+com.fahimahmed.bv.R$menu: int main
+com.fahimahmed.bv.R$menu: R$menu()
+com.fahimahmed.bv.R$string: int action_websearch
+com.fahimahmed.bv.R$string: int app_name
+com.fahimahmed.bv.R$string: int app_not_available
+com.fahimahmed.bv.R$string: int blank
+com.fahimahmed.bv.R$string: int button_save
+com.fahimahmed.bv.R$string: int drawer_close
+com.fahimahmed.bv.R$string: int drawer_open
+com.fahimahmed.bv.R$string: int label_product_name
+com.fahimahmed.bv.R$string: int label_product_price
+com.fahimahmed.bv.R$string: int label_product_quantity
+com.fahimahmed.bv.R$string: R$string()
+com.fahimahmed.bv.application.BVAssignment
+com.fahimahmed.bv.application.BVAssignment: BVAssignment()
+com.fahimahmed.bv.database.Product: Product()
+com.fahimahmed.bv.fragment.AllProductsFragment: AllProductsFragment()
+com.fahimahmed.bv.fragment.BlankFragment: BlankFragment()
+com.fahimahmed.bv.fragment.InsertProductFragment: InsertProductFragment()

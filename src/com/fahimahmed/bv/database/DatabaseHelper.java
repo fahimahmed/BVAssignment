@@ -5,19 +5,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
-
 	
 	private static final String DB_NAME = "product_bv";
 	private static final int DB_VERSION = 1;
 	
 	public DatabaseHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		
 		db.execSQL("CREATE TABLE IF NOT EXISTS android_metadata ('locale' TEXT DEFAULT 'en_US')");
 	
@@ -26,14 +23,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 				+ Product.PRODUCT_NAME + " text, "
 				+ Product.PRODUCT_PRICE + " text, " 
 				+ Product.PRODUCT_QUANTITY + " integer, " 
-				+ Product.PRODUCT_EMAIL_SENT + " boolean);");
-		
+				+ Product.PRODUCT_EMAIL_SENT + " integer);");
 		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		
 	}
 
