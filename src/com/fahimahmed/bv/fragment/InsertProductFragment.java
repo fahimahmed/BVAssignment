@@ -68,7 +68,8 @@ public class InsertProductFragment extends Fragment implements
 			Product product = new Product();
 			product.name = etProductName.getText().toString();
 			product.price = etProductPrice.getText().toString();
-			product.quantity = Integer.parseInt(etProductQuantity.getText().toString());
+			product.quantity = Integer.parseInt(etProductQuantity.getText()
+					.toString());
 			product.isEmailSent = 0;
 			products.add(product);
 			database.insertProducts(products);
