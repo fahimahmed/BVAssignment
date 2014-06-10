@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.fahimahmed.bv.fragment.AllProductsFragment;
 import com.fahimahmed.bv.fragment.BlankFragment;
 import com.fahimahmed.bv.fragment.InsertProductFragment;
+import com.fahimahmed.bv.service.SendEmailService;
+import com.fahimahmed.bv.util.ConnectionDetector;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] mMenuTitles;
+	private ConnectionDetector connDetector;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,11 @@ public class MainActivity extends Activity {
 
 		if (savedInstanceState == null) {
 			selectItem(0);
+		}
+
+		connDetector = new ConnectionDetector(MainActivity.this);
+		if (connDetector.isConnectingToInternet()) {
+			startService(new Intent(MainActivity.this, SendEmailService.class));
 		}
 	}
 
@@ -203,11 +211,11 @@ public class MainActivity extends Activity {
 		super.onPause();
 		mDrawerList.setOnItemClickListener(null);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		if(mDrawerList != null){
+		if (mDrawerList != null) {
 			mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		}
 	}
