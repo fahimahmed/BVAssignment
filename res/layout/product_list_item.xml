@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="100" >
+    android:weightSum="100" 
+    android:background="@drawable/list_item_back"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/layoutContents"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="80"
+        android:layout_weight="90"
         android:orientation="vertical" >
 
         <TextView
@@ -17,7 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvListProductPrice"
@@ -32,14 +35,24 @@
             android:layout_height="wrap_content"
             android:text="Quantity"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvListSyncedOrNot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Synced"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imgSyncedOrNot"
+        android:id="@+id/imgPopUpMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="20"
+        android:layout_weight="10"
+        android:layout_gravity="center"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_launcher" />
+        android:background="@android:color/holo_blue_dark"
+        android:src="@drawable/menu" />
 
 </LinearLayout>

@@ -81,6 +81,10 @@ public class SendEmailService extends Service {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		System.out.println("Service Destroyed!!");
+		if(timer != null) {
+			timer.cancel();
+			timer = null;
+		}
 	}
 
 }

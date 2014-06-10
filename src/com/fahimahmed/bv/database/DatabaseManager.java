@@ -99,8 +99,7 @@ public class DatabaseManager {
 
 		Cursor cursor = database.rawQuery("select * from "
 				+ Product.PRODUCT_TABLE + " where " + Product.PRODUCT_EMAIL_SENT + " =0", null);
-		System.out.println(cursor.getCount());
-
+		
 		while (cursor.moveToNext()) {
 
 			Product product = new Product();
@@ -118,7 +117,6 @@ public class DatabaseManager {
 		}
 		cursor.close();
 		return products;
-
 	}
 	
 	public void UpdateProductAfterSyncing(int product_id) {
@@ -129,6 +127,11 @@ public class DatabaseManager {
 		database.execSQL(query);
 	}
 	
-	
+	public void deleteProduct(int product_id){
+		String query = "delete from " + Product.PRODUCT_TABLE + " where " + Product.PRODUCT_ID
+				+ " = " + product_id;
+		System.out.println(query);
+		database.execSQL(query);
+	}
 
 }
