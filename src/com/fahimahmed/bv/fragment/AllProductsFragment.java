@@ -3,6 +3,7 @@ package com.fahimahmed.bv.fragment;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,10 +19,10 @@ import com.fahimahmed.bv.database.Product;
 
 public class AllProductsFragment extends Fragment{
 	
-	private ListView mListView;
-	private ArrayList<Product> products;
-	private DatabaseManager database;
-	private Context context;
+	private static ListView mListView;
+	private static ArrayList<Product> products;
+	private static DatabaseManager database;
+	private static Context context;
 	private Activity mActivity;
 	
 	
@@ -48,14 +49,25 @@ public class AllProductsFragment extends Fragment{
 		context = this.mActivity;
 		mListView = (ListView) view.findViewById(R.id.list);
 		database = DatabaseManager.getInstance(context);
-		
-		products = database.getAllProducts();
-		System.out.println(products.size());
-		
-		ProductListAdapter adapter = new ProductListAdapter(context, R.layout.product_list_item, products);
-		mListView.setAdapter(adapter);
-		
+
+		setListAdapter();
 		
 	}
 	
+	public static void setListAdapter(){
+		products = getProducts();
+		ProductListAdapter adapter = new ProductListAdapter(context, R.layout.product_list_item, products);
+		mListView.setAdapter(adapter);
+	}
+	
+	public static ArrayList<Product> getProducts(){
+		ArrayList<Product> products = database.getAllProducts();
+		return products;
+	}
+	
+	public  void showDialog() {
+	    // Create the fragment and show it as a dialog.
+	    DialogFragment newFragment = InsertProductFragment.newInstance();
+	    newFragment.show(getFragmentManager(), "dialog");
+	}
 }

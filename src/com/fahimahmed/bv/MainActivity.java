@@ -23,6 +23,7 @@ import com.fahimahmed.bv.fragment.BlankFragment;
 import com.fahimahmed.bv.fragment.InsertProductFragment;
 import com.fahimahmed.bv.service.SendEmailService;
 import com.fahimahmed.bv.util.ConnectionDetector;
+import com.fahimahmed.bv.util.SharedData;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;

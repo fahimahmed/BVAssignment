@@ -180,6 +180,7 @@ public final class R {
         public static final int secondary_text=0x7f040097;
         public static final int secondary_text_black=0x7f040098;
         public static final int transparent=0x7f040002;
+        public static final int transparent_green=0x7f0400a9;
         public static final int transparent_holo_light_blue=0x7f0400a5;
         public static final int view_pager=0x7f040000;
         public static final int violet=0x7f040099;

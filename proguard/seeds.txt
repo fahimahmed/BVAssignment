@@ -2931,6 +2931,7 @@ com.fahimahmed.bv.R$color: int primary_text_black
 com.fahimahmed.bv.R$color: int secondary_text
 com.fahimahmed.bv.R$color: int secondary_text_black
 com.fahimahmed.bv.R$color: int transparent
+com.fahimahmed.bv.R$color: int transparent_green
 com.fahimahmed.bv.R$color: int transparent_holo_light_blue
 com.fahimahmed.bv.R$color: int view_pager
 com.fahimahmed.bv.R$color: int violet

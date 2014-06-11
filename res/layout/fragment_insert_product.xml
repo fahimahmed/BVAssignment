@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="60"
             android:hint="@string/label_product_price"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textSize="16sp" />
     </LinearLayout>
 

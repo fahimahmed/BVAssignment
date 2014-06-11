@@ -92,14 +92,15 @@ public class DatabaseManager {
 		return products;
 
 	}
-	
+
 	public ArrayList<Product> getUnsyncedProducts() {
 
 		ArrayList<Product> products = new ArrayList<Product>();
 
 		Cursor cursor = database.rawQuery("select * from "
-				+ Product.PRODUCT_TABLE + " where " + Product.PRODUCT_EMAIL_SENT + " =0", null);
-		
+				+ Product.PRODUCT_TABLE + " where "
+				+ Product.PRODUCT_EMAIL_SENT + " =0", null);
+
 		while (cursor.moveToNext()) {
 
 			Product product = new Product();
@@ -118,20 +119,40 @@ public class DatabaseManager {
 		cursor.close();
 		return products;
 	}
-	
+
 	public void UpdateProductAfterSyncing(int product_id) {
 		String query = "update " + Product.PRODUCT_TABLE + " set "
-				+ Product.PRODUCT_EMAIL_SENT + " = 1 where " + Product.PRODUCT_ID
-				+ " = " + product_id;
+				+ Product.PRODUCT_EMAIL_SENT + " = 1 where "
+				+ Product.PRODUCT_ID + " = " + product_id;
 		System.out.println(query);
 		database.execSQL(query);
 	}
-	
-	public void deleteProduct(int product_id){
-		String query = "delete from " + Product.PRODUCT_TABLE + " where " + Product.PRODUCT_ID
-				+ " = " + product_id;
+
+	public void deleteProduct(int product_id) {
+		String query = "delete from " + Product.PRODUCT_TABLE + " where "
+				+ Product.PRODUCT_ID + " = " + product_id;
 		System.out.println(query);
 		database.execSQL(query);
+	}
+
+	public boolean updateProduct(Product product) {
+
+		ContentValues cv = new ContentValues();
+		cv.put(Product.PRODUCT_NAME, product.name);
+		cv.put(Product.PRODUCT_PRICE, product.price);
+		cv.put(Product.PRODUCT_QUANTITY, product.quantity);
+		cv.put(Product.PRODUCT_EMAIL_SENT, product.isEmailSent);
+
+		boolean flag = false;
+		try {
+			database.update(Product.PRODUCT_TABLE, cv, Product.PRODUCT_ID+"='" + product.id + "'",
+					null);
+			flag = true;
+		} catch (Exception exception) {
+			flag = false;
+		}
+		
+		return flag;
 	}
 
 }

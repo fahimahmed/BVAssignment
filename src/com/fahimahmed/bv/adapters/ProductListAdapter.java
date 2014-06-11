@@ -2,7 +2,9 @@ package com.fahimahmed.bv.adapters;
 
 import java.util.ArrayList;
 
+import android.app.DialogFragment;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,33 +13,38 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.fahimahmed.bv.MainActivity;
 import com.fahimahmed.bv.R;
+import com.fahimahmed.bv.database.DatabaseManager;
 import com.fahimahmed.bv.database.Product;
+import com.fahimahmed.bv.fragment.AllProductsFragment;
+import com.fahimahmed.bv.fragment.InsertProductFragment;
+import com.fahimahmed.bv.util.SharedData;
 
 public class ProductListAdapter extends ArrayAdapter<Product> {
 
 	private Context context;
 	private int layoutResc;
 	private ArrayList<Product> products;
+	private DatabaseManager database;
 
 	public ProductListAdapter(Context context, int resource,
 			ArrayList<Product> products) {
 		super(context, resource, products);
-		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.layoutResc = resource;
 		this.products = products;
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View rowView = convertView;
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		;
+
+		database = DatabaseManager.getInstance(context);
+
 		if (rowView == null) {
 			rowView = inflater.inflate(layoutResc, parent, false);
 			TextView tvProductName = (TextView) rowView
@@ -69,26 +76,35 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 
-					// Creating the instance of PopupMenu
 					PopupMenu popup = new PopupMenu(context, imgPopUpMenu);
-					// Inflating the Popup using xml file
+
 					popup.getMenuInflater().inflate(R.menu.popup_menu,
 							popup.getMenu());
 
-					// registering popup with OnMenuItemClickListener
 					popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 						public boolean onMenuItemClick(MenuItem item) {
-							Toast.makeText(context,
-									"You Clicked : " + item.getTitle(),
-									Toast.LENGTH_SHORT).show();
+
+							switch (item.getItemId()) {
+							case R.id.menuProductDelete:
+								database.deleteProduct(products.get(position).id);
+								AllProductsFragment.setListAdapter();
+
+								break;
+							case R.id.menuProductEdit:
+								SharedData sharedData = SharedData.getInstance();
+								sharedData.setProduct(products.get(position));
+								DialogFragment dialog = InsertProductFragment
+										.newInstance();
+								dialog.show(((MainActivity) context)
+										.getFragmentManager(), "dialog");
+								break;
+							}
 							return true;
 						}
 					});
 
-					popup.show();// showing popup menu
-
+					popup.show();
 				}
 			});
 		}

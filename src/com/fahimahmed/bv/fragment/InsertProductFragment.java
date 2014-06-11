@@ -3,12 +3,15 @@ package com.fahimahmed.bv.fragment;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,8 +19,9 @@ import android.widget.Toast;
 import com.fahimahmed.bv.R;
 import com.fahimahmed.bv.database.DatabaseManager;
 import com.fahimahmed.bv.database.Product;
+import com.fahimahmed.bv.util.SharedData;
 
-public class InsertProductFragment extends Fragment implements
+public class InsertProductFragment extends DialogFragment implements
 		View.OnClickListener {
 
 	private Activity mActivity;
@@ -26,6 +30,13 @@ public class InsertProductFragment extends Fragment implements
 	private DatabaseManager database;
 	private ArrayList<Product> products;
 	private Context context;
+	private boolean isDialog = false;
+	private Product productToEdit;
+	SharedData sharedData = SharedData.getInstance();
+
+	public static InsertProductFragment newInstance() {
+		return new InsertProductFragment();
+	}
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -41,8 +52,15 @@ public class InsertProductFragment extends Fragment implements
 	}
 
 	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		Dialog dialog = super.onCreateDialog(savedInstanceState);
+		isDialog = true;
+		dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		return dialog;
+	}
+
+	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 
 		initUI(view);
@@ -56,7 +74,15 @@ public class InsertProductFragment extends Fragment implements
 		etProductPrice = (EditText) view.findViewById(R.id.etProductPrice);
 		etProductQuantity = (EditText) view
 				.findViewById(R.id.etProductQuantity);
+
 		btnSave = (Button) view.findViewById(R.id.btnSave);
+		if (isDialog) {
+			btnSave.setText("Update");
+			productToEdit = sharedData.getProduct();
+			etProductName.setText(productToEdit.name);
+			etProductPrice.setText(productToEdit.price);
+			etProductQuantity.setText("" + productToEdit.quantity);
+		}
 		btnSave.setOnClickListener(this);
 	}
 
@@ -65,23 +91,67 @@ public class InsertProductFragment extends Fragment implements
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btnSave:
-			products = new ArrayList<Product>();
-			Product product = new Product();
-			product.name = etProductName.getText().toString();
-			product.price = etProductPrice.getText().toString();
-			product.quantity = Integer.parseInt(etProductQuantity.getText()
-					.toString());
-			product.isEmailSent = 0;
-			products.add(product);
-			database.insertProducts(products);
-			
-			Toast.makeText(context, "Product Added" , Toast.LENGTH_SHORT).show();			
-			etProductName.setText("");
-			etProductPrice.setText("");
-			etProductQuantity.setText("");
-			
-			
-			
+
+			if (!isDialog) {
+
+				if (!etProductName.getText().toString().equalsIgnoreCase("")
+						&& !etProductPrice.getText().toString()
+								.equalsIgnoreCase("")
+						&& !etProductQuantity.getText().toString()
+								.equalsIgnoreCase("")) {
+					products = new ArrayList<Product>();
+					Product product = new Product();
+					product.name = etProductName.getText().toString();
+					product.price = etProductPrice.getText().toString();
+					product.quantity = Integer.parseInt(etProductQuantity
+							.getText().toString());
+					product.isEmailSent = 0;
+					products.add(product);
+					database.insertProducts(products);
+
+					etProductName.setText("");
+					etProductPrice.setText("");
+					etProductQuantity.setText("");
+
+					Toast.makeText(context, "Product Added", Toast.LENGTH_SHORT)
+							.show();
+				} else {
+					Toast.makeText(context, "Every field is required!",
+							Toast.LENGTH_SHORT).show();
+				}
+			} else {
+				if (!etProductName.getText().toString().equalsIgnoreCase("")
+						&& !etProductPrice.getText().toString()
+								.equalsIgnoreCase("")
+						&& !etProductQuantity.getText().toString()
+								.equalsIgnoreCase("")) {
+					Product product = new Product();
+					product.id = productToEdit.id;
+					product.name = etProductName.getText().toString();
+					product.price = etProductPrice.getText().toString();
+					product.quantity = Integer.parseInt(etProductQuantity
+							.getText().toString());
+					product.isEmailSent = 0;
+
+					boolean flag = database.updateProduct(product);
+					if (flag) {
+						Toast.makeText(context, "Product Updated",
+								Toast.LENGTH_SHORT).show();
+						AllProductsFragment.setListAdapter();
+						DialogFragment dialogFragment = (DialogFragment) getFragmentManager()
+								.findFragmentByTag("dialog");
+						if (dialogFragment != null) {
+							dialogFragment.dismiss();
+						}
+					} else {
+						Toast.makeText(context, "Product not Updated!",
+								Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(context, "Every field is required!",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
 			break;
 		}
 	}

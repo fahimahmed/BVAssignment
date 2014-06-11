@@ -172,5 +172,6 @@
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="main_background">#E5E5E5</color>
     <color name="pata_kalar">#8dc63f</color>
+    <color name="transparent_green">#600c8a00</color>
 
 </resources>
