@@ -52,7 +52,6 @@
         android:layout_weight="10"
         android:layout_gravity="center"
         android:scaleType="centerInside"
-        android:background="@android:color/holo_blue_dark"
-        android:src="@drawable/menu" />
+        android:src="@drawable/ic_overflow_pressed" />
 
 </LinearLayout>

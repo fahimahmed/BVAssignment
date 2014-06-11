@@ -193,8 +193,10 @@ public final class R {
         public static final int ic_action_search_inverse=0x7f020002;
         public static final int ic_drawer=0x7f020003;
         public static final int ic_launcher=0x7f020004;
-        public static final int list_item_back=0x7f020005;
-        public static final int menu=0x7f020006;
+        public static final int ic_overflow_normal=0x7f020005;
+        public static final int ic_overflow_pressed=0x7f020006;
+        public static final int list_item_back=0x7f020007;
+        public static final int menu=0x7f020008;
     }
     public static final class id {
         public static final int actionSearchView=0x7f090015;

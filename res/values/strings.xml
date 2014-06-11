@@ -14,7 +14,7 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
-	<string name="label_product_name">Product Name</string>
+	<string name="label_product_name">Name</string>
 	<string name="label_product_price">Price</string>
 	<string name="label_product_quantity">Quantity</string>
 	<string name="button_save">Save</string>
