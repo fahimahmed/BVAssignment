@@ -19,4 +19,6 @@
 	<string name="label_product_quantity">Quantity</string>
 	<string name="button_save">Save</string>
 	<string name="blank">Feature not implemented...yet!</string>
+	<string name="search">Search for products</string>
+	<string name="search_hint">Search for products</string>
 </resources>

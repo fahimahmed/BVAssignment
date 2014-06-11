@@ -1,13 +1,17 @@
 package com.fahimahmed.bv;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,14 +20,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SearchView;
 
 import com.fahimahmed.bv.fragment.AllProductsFragment;
 import com.fahimahmed.bv.fragment.BlankFragment;
 import com.fahimahmed.bv.fragment.InsertProductFragment;
 import com.fahimahmed.bv.service.SendEmailService;
 import com.fahimahmed.bv.util.ConnectionDetector;
-import com.fahimahmed.bv.util.SharedData;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -94,6 +97,16 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
+
+		MenuItem item = menu.findItem(R.id.actionSearchView);
+
+		SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchableInfo info = searchManager
+				.getSearchableInfo(getComponentName());
+		searchView.setSearchableInfo(info);
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -103,7 +116,8 @@ public class MainActivity extends Activity {
 		// If the nav drawer is open, hide action items related to the content
 		// view
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+		menu.findItem(R.id.actionSearchView).setVisible(!drawerOpen);
+		menu.findItem(R.id.actionSettings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -116,17 +130,9 @@ public class MainActivity extends Activity {
 		}
 		// Handle action buttons
 		switch (item.getItemId()) {
-		case R.id.action_websearch:
-			// create intent to perform web search for this planet
-			Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-			intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
-			// catch event that there's no activity to handle intent
-			if (intent.resolveActivity(getPackageManager()) != null) {
-				startActivity(intent);
-			} else {
-				Toast.makeText(this, R.string.app_not_available,
-						Toast.LENGTH_LONG).show();
-			}
+		case R.id.actionSettings:
+			DialogFragment dialog = BlankFragment.newInstance();
+			dialog.show(getFragmentManager(), "blank_dialog");
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -160,6 +166,7 @@ public class MainActivity extends Activity {
 			AllProductsFragment fragment = new AllProductsFragment();
 			Bundle args = new Bundle();
 			args.putInt("menu_position", position);
+			args.putBoolean("fromSearch", false);
 			fragment.setArguments(args);
 
 			FragmentManager fragmentManager = getFragmentManager();
