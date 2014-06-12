@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,6 +14,7 @@ import android.util.Log;
 import com.fahimahmed.bv.database.DatabaseManager;
 import com.fahimahmed.bv.database.Product;
 import com.fahimahmed.bv.util.ConnectionDetector;
+import com.fahimahmed.bv.util.Constants;
 import com.fahimahmed.bv.util.GMailSender;
 
 public class SendEmailService extends Service {
@@ -52,18 +55,22 @@ public class SendEmailService extends Service {
 					if (connDetector.isConnectingToInternet()) {
 						try {
 							GMailSender sender = new GMailSender(
-									"project.geeft@gmail.com", "geeftgeeft");
+									Constants.SENDER_EMAIL, Constants.SENDER_PASSWORD);
 							sender.sendMail("BV Assignemnt Auto Email Sending",
 									"Product Synced. Produce ID: "
 											+ unsyncedProducts.get(i).id,
-									"project.geeft@gmail.com",
-									"fahim.ahmed1988@gmail.com");
+									Constants.SENDER_EMAIL,
+									Constants.RECEIVER_EMAIL);
 						} catch (Exception e) {
 							Log.e("SendMail", e.getMessage(), e);
 						}
-
+						
+						try{
 						database.UpdateProductAfterSyncing(unsyncedProducts
 								.get(i).id);
+						}catch(Exception e){
+							Log.e("Update DB", e.getMessage(), e);
+						}
 					}
 				}
 
@@ -86,5 +93,4 @@ public class SendEmailService extends Service {
 			timer = null;
 		}
 	}
-
 }

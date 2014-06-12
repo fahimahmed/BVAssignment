@@ -21,4 +21,5 @@
 	<string name="blank">Feature not implemented...yet!</string>
 	<string name="search">Search for products</string>
 	<string name="search_hint">Search for products</string>
+	<string name="nothing_found">Nothing found for query: </string>
 </resources>

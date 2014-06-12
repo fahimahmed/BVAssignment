@@ -2947,6 +2947,9 @@ com.fahimahmed.bv.R$drawable: int ic_overflow_normal
 com.fahimahmed.bv.R$drawable: int ic_overflow_pressed
 com.fahimahmed.bv.R$drawable: int list_item_back
 com.fahimahmed.bv.R$drawable: int menu
+com.fahimahmed.bv.R$drawable: int project_card_color
+com.fahimahmed.bv.R$drawable: int project_card_pressed
+com.fahimahmed.bv.R$drawable: int project_card_shadow
 com.fahimahmed.bv.R$drawable: R$drawable()
 com.fahimahmed.bv.R$id: int actionSearchView
 com.fahimahmed.bv.R$id: int actionSettings
@@ -2970,6 +2973,7 @@ com.fahimahmed.bv.R$id: int tvListProductName
 com.fahimahmed.bv.R$id: int tvListProductPrice
 com.fahimahmed.bv.R$id: int tvListProductQuantity
 com.fahimahmed.bv.R$id: int tvListSyncedOrNot
+com.fahimahmed.bv.R$id: int tvNothingFound
 com.fahimahmed.bv.R$id: int tvProductName
 com.fahimahmed.bv.R$id: int tvProductPrice
 com.fahimahmed.bv.R$id: int tvProductQuantity
@@ -2995,6 +2999,7 @@ com.fahimahmed.bv.R$string: int drawer_open
 com.fahimahmed.bv.R$string: int label_product_name
 com.fahimahmed.bv.R$string: int label_product_price
 com.fahimahmed.bv.R$string: int label_product_quantity
+com.fahimahmed.bv.R$string: int nothing_found
 com.fahimahmed.bv.R$string: int search
 com.fahimahmed.bv.R$string: int search_hint
 com.fahimahmed.bv.R$string: R$string()
@@ -3015,6 +3020,7 @@ com.fahimahmed.bv.service.NetworkChangedReceiver
 com.fahimahmed.bv.service.NetworkChangedReceiver: NetworkChangedReceiver()
 com.fahimahmed.bv.service.SendEmailService
 com.fahimahmed.bv.service.SendEmailService: SendEmailService()
+com.fahimahmed.bv.util.Constants: Constants()
 com.fahimahmed.bv.util.JSSEProvider: JSSEProvider()
 com.sun.activation.registries.MailcapFile: MailcapFile()
 com.sun.activation.registries.MailcapParseException: MailcapParseException()

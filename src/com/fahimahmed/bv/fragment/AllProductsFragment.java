@@ -1,7 +1,6 @@
 package com.fahimahmed.bv.fragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -12,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.fahimahmed.bv.R;
 import com.fahimahmed.bv.adapters.ProductListAdapter;
@@ -21,6 +21,7 @@ import com.fahimahmed.bv.database.Product;
 public class AllProductsFragment extends Fragment {
 
 	private static ListView mListView;
+	private static TextView tvNothingFound;
 	private static ArrayList<Product> products;
 	private static DatabaseManager database;
 	private static Context context;
@@ -50,16 +51,19 @@ public class AllProductsFragment extends Fragment {
 
 		context = this.mActivity;
 		mListView = (ListView) view.findViewById(R.id.list);
+		tvNothingFound = (TextView) view.findViewById(R.id.tvNothingFound);
+		mListView.setVisibility(View.VISIBLE);
+		tvNothingFound.setVisibility(View.GONE);
 		database = DatabaseManager.getInstance(context);
 
 		if (getArguments().containsKey(KEY_QUERY)) {
 			String query = getArguments().getString(KEY_QUERY);
 			doSearch(query);
-		} 
-		
-		if(getArguments().containsKey("fromSearch")) {
+		}
+
+		if (getArguments().containsKey("fromSearch")) {
 			fromSearch = getArguments().getBoolean("fromSearch");
-			if(!fromSearch){
+			if (!fromSearch) {
 				setListAdapter();
 			}
 		}
@@ -68,13 +72,22 @@ public class AllProductsFragment extends Fragment {
 
 	public static void setListAdapter() {
 		products = getProducts();
-		ProductListAdapter adapter = new ProductListAdapter(context,
-				R.layout.product_list_item, products);
-		mListView.setAdapter(adapter);
+
+		if (products.size() == 0) {
+			mListView.setVisibility(View.GONE);
+			tvNothingFound.setVisibility(View.VISIBLE);
+			tvNothingFound.setText("No products found !");
+		} else {
+			mListView.setVisibility(View.VISIBLE);
+			tvNothingFound.setVisibility(View.GONE);
+			ProductListAdapter adapter = new ProductListAdapter(context,
+					R.layout.product_list_item, products, true);
+			mListView.setAdapter(adapter);
+		}
 
 	}
 
-	protected void doSearch(String query) {
+	private void doSearch(String query) {
 		ArrayList<Product> results = new ArrayList<Product>();
 		products = getProducts();
 		for (int i = 0; i < products.size(); i++) {
@@ -83,9 +96,18 @@ public class AllProductsFragment extends Fragment {
 				results.add(products.get(i));
 			}
 		}
-		ProductListAdapter adapter = new ProductListAdapter(context,
-				R.layout.product_list_item, results);
-		mListView.setAdapter(adapter);
+
+		if (results.size() == 0) {
+			mListView.setVisibility(View.GONE);
+			tvNothingFound.setVisibility(View.VISIBLE);
+			tvNothingFound.setText("No products found for  " + query);
+		} else {
+			mListView.setVisibility(View.VISIBLE);
+			tvNothingFound.setVisibility(View.GONE);
+			ProductListAdapter adapter = new ProductListAdapter(context,
+					R.layout.product_list_item, results, false);
+			mListView.setAdapter(adapter);
+		}
 	}
 
 	public static ArrayList<Product> getProducts() {

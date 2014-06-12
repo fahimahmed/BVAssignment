@@ -197,33 +197,37 @@ public final class R {
         public static final int ic_overflow_pressed=0x7f020006;
         public static final int list_item_back=0x7f020007;
         public static final int menu=0x7f020008;
+        public static final int project_card_color=0x7f020009;
+        public static final int project_card_pressed=0x7f02000a;
+        public static final int project_card_shadow=0x7f02000b;
     }
     public static final class id {
-        public static final int actionSearchView=0x7f090015;
-        public static final int actionSettings=0x7f090016;
-        public static final int btnSave=0x7f09000e;
+        public static final int actionSearchView=0x7f090016;
+        public static final int actionSettings=0x7f090017;
+        public static final int btnSave=0x7f09000f;
         public static final int content_frame=0x7f090002;
         public static final int drawer_layout=0x7f090001;
-        public static final int etProductName=0x7f090007;
-        public static final int etProductPrice=0x7f09000a;
-        public static final int etProductQuantity=0x7f09000d;
+        public static final int etProductName=0x7f090008;
+        public static final int etProductPrice=0x7f09000b;
+        public static final int etProductQuantity=0x7f09000e;
         public static final int fragment_container=0x7f090000;
-        public static final int imgPopUpMenu=0x7f090014;
-        public static final int layoutContents=0x7f09000f;
+        public static final int imgPopUpMenu=0x7f090015;
+        public static final int layoutContents=0x7f090010;
         public static final int left_drawer=0x7f090003;
-        public static final int list=0x7f090004;
-        public static final int menuProductDelete=0x7f090018;
-        public static final int menuProductEdit=0x7f090017;
-        public static final int panelProductName=0x7f090005;
-        public static final int panelProductPrice=0x7f090008;
-        public static final int panelProductQuantity=0x7f09000b;
-        public static final int tvListProductName=0x7f090010;
-        public static final int tvListProductPrice=0x7f090011;
-        public static final int tvListProductQuantity=0x7f090012;
-        public static final int tvListSyncedOrNot=0x7f090013;
-        public static final int tvProductName=0x7f090006;
-        public static final int tvProductPrice=0x7f090009;
-        public static final int tvProductQuantity=0x7f09000c;
+        public static final int list=0x7f090005;
+        public static final int menuProductDelete=0x7f090019;
+        public static final int menuProductEdit=0x7f090018;
+        public static final int panelProductName=0x7f090006;
+        public static final int panelProductPrice=0x7f090009;
+        public static final int panelProductQuantity=0x7f09000c;
+        public static final int tvListProductName=0x7f090011;
+        public static final int tvListProductPrice=0x7f090012;
+        public static final int tvListProductQuantity=0x7f090013;
+        public static final int tvListSyncedOrNot=0x7f090014;
+        public static final int tvNothingFound=0x7f090004;
+        public static final int tvProductName=0x7f090007;
+        public static final int tvProductPrice=0x7f09000a;
+        public static final int tvProductQuantity=0x7f09000d;
     }
     public static final class layout {
         public static final int activity_fragment_container=0x7f030000;
@@ -249,6 +253,7 @@ public final class R {
         public static final int label_product_name=0x7f060005;
         public static final int label_product_price=0x7f060006;
         public static final int label_product_quantity=0x7f060007;
+        public static final int nothing_found=0x7f06000c;
         public static final int search=0x7f06000a;
         public static final int search_hint=0x7f06000b;
     }

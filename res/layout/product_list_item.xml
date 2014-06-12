@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:weightSum="100" 
-    android:background="@drawable/list_item_back"
+    android:background="@drawable/project_card_color"
     android:padding="10dp">
 
     <LinearLayout
