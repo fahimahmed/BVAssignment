@@ -1,18 +1,24 @@
 package com.fahimahmed.bv;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,10 +28,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.fahimahmed.bv.contentprovider.ProductsContract;
 import com.fahimahmed.bv.fragment.AllProductsFragment;
 import com.fahimahmed.bv.fragment.BlankFragment;
 import com.fahimahmed.bv.fragment.InsertProductFragment;
-import com.fahimahmed.bv.service.SendEmailService;
 import com.fahimahmed.bv.util.ConnectionDetector;
 
 public class MainActivity extends Activity {
@@ -37,6 +43,9 @@ public class MainActivity extends Activity {
 	private CharSequence mTitle;
 	private String[] mMenuTitles;
 	private ConnectionDetector connDetector;
+	private Account mConnectedAccount;
+	public static final String ACCOUNT_NAME = "BV Products";
+	public static final String ACCOUNT_TYPE = "com.fahimahmed.bv";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +97,22 @@ public class MainActivity extends Activity {
 		}
 
 		connDetector = new ConnectionDetector(MainActivity.this);
-		if (connDetector.isConnectingToInternet()) {
-			startService(new Intent(MainActivity.this, SendEmailService.class));
+//		if (connDetector.isConnectingToInternet()) {
+//			startService(new Intent(MainActivity.this, SendEmailService.class));
+//		}
+		
+		mConnectedAccount = new Account(ACCOUNT_NAME,ACCOUNT_TYPE);
+		AccountManager accountManager = AccountManager.get(getApplicationContext());
+		if (accountManager.addAccountExplicitly(mConnectedAccount, null, null)) {
+		   ContentResolver.setIsSyncable(mConnectedAccount, ProductsContract.AUTHORITY, 1);
+		   ContentResolver.setMasterSyncAutomatically(true);
+		   ContentResolver.setSyncAutomatically(mConnectedAccount, ProductsContract.AUTHORITY, true);
+//		   ContentResolver.addPeriodicSync(mConnectedAccount, ProductsContract.AUTHORITY, new Bundle(), 2);
 		}
+
+		Observer observer = new Observer(null);
+		getContentResolver().registerContentObserver(
+				ProductsContract.CONTENT_URI, true, observer);
 	}
 
 	@Override
@@ -226,5 +248,30 @@ public class MainActivity extends Activity {
 		if (mDrawerList != null) {
 			mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 		}
+	}
+	
+	public class Observer extends ContentObserver {
+
+		public Observer(Handler handler) {
+			super(handler);
+		}
+
+		@Override
+		public void onChange(boolean selfChange) {
+			super.onChange(selfChange);
+		}
+
+		@Override
+		public void onChange(boolean selfChange, Uri uri) {
+			super.onChange(selfChange, uri);
+			Log.e("", "On Change");
+			Bundle extras = new Bundle();
+			extras.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+			ContentResolver.requestSync(mConnectedAccount, ProductsContract.AUTHORITY,
+					extras);
+			Log.e("", "After Sync");
+			
+		}
+
 	}
 }

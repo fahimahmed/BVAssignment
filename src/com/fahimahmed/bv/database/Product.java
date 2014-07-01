@@ -2,12 +2,12 @@ package com.fahimahmed.bv.database;
 
 public class Product {
 
-	static String PRODUCT_TABLE = "product_table";
-	static String PRODUCT_ID = "id";
-	static String PRODUCT_NAME = "name";
-	static String PRODUCT_PRICE = "price";
-	static String PRODUCT_QUANTITY = "quantity";
-	static String PRODUCT_EMAIL_SENT = "isEmailSent";
+	public static String PRODUCT_TABLE = "product_table";
+	public static String PRODUCT_ID = "id";
+	public static String PRODUCT_NAME = "name";
+	public static String PRODUCT_PRICE = "price";
+	public static String PRODUCT_QUANTITY = "quantity";
+	public static String PRODUCT_EMAIL_SENT = "isEmailSent";
 
 	public int id;
 	public String name;

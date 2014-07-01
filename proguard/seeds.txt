@@ -2989,6 +2989,7 @@ com.fahimahmed.bv.R$layout: R$layout()
 com.fahimahmed.bv.R$menu: int main
 com.fahimahmed.bv.R$menu: int popup_menu
 com.fahimahmed.bv.R$menu: R$menu()
+com.fahimahmed.bv.R$string: int account_authentication_label
 com.fahimahmed.bv.R$string: int action_websearch
 com.fahimahmed.bv.R$string: int app_name
 com.fahimahmed.bv.R$string: int app_not_available
@@ -3003,10 +3004,15 @@ com.fahimahmed.bv.R$string: int nothing_found
 com.fahimahmed.bv.R$string: int search
 com.fahimahmed.bv.R$string: int search_hint
 com.fahimahmed.bv.R$string: R$string()
+com.fahimahmed.bv.R$xml: int authenticator
 com.fahimahmed.bv.R$xml: int searchable
+com.fahimahmed.bv.R$xml: int sync_adapter
 com.fahimahmed.bv.R$xml: R$xml()
 com.fahimahmed.bv.application.BVAssignment
 com.fahimahmed.bv.application.BVAssignment: BVAssignment()
+com.fahimahmed.bv.contentprovider.ProductsContentProvider
+com.fahimahmed.bv.contentprovider.ProductsContentProvider: ProductsContentProvider()
+com.fahimahmed.bv.contentprovider.ProductsContract: ProductsContract()
 com.fahimahmed.bv.database.Product: Product()
 com.fahimahmed.bv.fragment.AllProductsFragment: AllProductsFragment()
 com.fahimahmed.bv.fragment.BlankFragment: BlankFragment()
@@ -3016,10 +3022,12 @@ com.fahimahmed.bv.search.RecentSuggestionsProvider
 com.fahimahmed.bv.search.RecentSuggestionsProvider: RecentSuggestionsProvider()
 com.fahimahmed.bv.search.SearchActivity
 com.fahimahmed.bv.search.SearchActivity: SearchActivity()
-com.fahimahmed.bv.service.NetworkChangedReceiver
 com.fahimahmed.bv.service.NetworkChangedReceiver: NetworkChangedReceiver()
-com.fahimahmed.bv.service.SendEmailService
 com.fahimahmed.bv.service.SendEmailService: SendEmailService()
+com.fahimahmed.bv.syncadapter.ProductSyncService
+com.fahimahmed.bv.syncadapter.ProductSyncService: ProductSyncService()
+com.fahimahmed.bv.syncadapter.utils.StubAuthenticatorService
+com.fahimahmed.bv.syncadapter.utils.StubAuthenticatorService: StubAuthenticatorService()
 com.fahimahmed.bv.util.Constants: Constants()
 com.fahimahmed.bv.util.JSSEProvider: JSSEProvider()
 com.sun.activation.registries.MailcapFile: MailcapFile()

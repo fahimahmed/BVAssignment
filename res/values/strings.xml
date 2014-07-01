@@ -22,4 +22,5 @@
 	<string name="search">Search for products</string>
 	<string name="search_hint">Search for products</string>
 	<string name="nothing_found">Nothing found for query: </string>
+	<string name="account_authentication_label">BV Products</string>
 </resources>

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fahimahmed.bv.R;
+import com.fahimahmed.bv.contentprovider.ProductsContract;
 import com.fahimahmed.bv.database.DatabaseManager;
 import com.fahimahmed.bv.database.Product;
 import com.fahimahmed.bv.util.SharedData;
@@ -99,15 +100,27 @@ public class InsertProductFragment extends DialogFragment implements
 								.equalsIgnoreCase("")
 						&& !etProductQuantity.getText().toString()
 								.equalsIgnoreCase("")) {
-					products = new ArrayList<Product>();
-					Product product = new Product();
-					product.name = etProductName.getText().toString();
-					product.price = etProductPrice.getText().toString();
-					product.quantity = Integer.parseInt(etProductQuantity
-							.getText().toString());
-					product.isEmailSent = 0;
-					products.add(product);
-					database.insertProducts(products);
+					// products = new ArrayList<Product>();
+					// Product product = new Product();
+					// product.name = etProductName.getText().toString();
+					// product.price = etProductPrice.getText().toString();
+					// product.quantity = Integer.parseInt(etProductQuantity
+					// .getText().toString());
+					// product.isEmailSent = 0;
+					// products.add(product);
+					// database.insertProducts(products);
+
+					ContentValues cv = new ContentValues();
+					cv.put(Product.PRODUCT_NAME, etProductName.getText()
+							.toString());
+					cv.put(Product.PRODUCT_PRICE, etProductPrice.getText()
+							.toString());
+					cv.put(Product.PRODUCT_QUANTITY, Integer
+							.parseInt(etProductQuantity.getText().toString()));
+					cv.put(Product.PRODUCT_EMAIL_SENT, 0);
+
+					getActivity().getContentResolver().insert(
+							ProductsContract.CONTENT_URI, cv);
 
 					etProductName.setText("");
 					etProductPrice.setText("");
@@ -125,34 +138,58 @@ public class InsertProductFragment extends DialogFragment implements
 								.equalsIgnoreCase("")
 						&& !etProductQuantity.getText().toString()
 								.equalsIgnoreCase("")) {
-					Product product = new Product();
-					product.id = productToEdit.id;
-					product.name = etProductName.getText().toString();
-					product.price = etProductPrice.getText().toString();
-					product.quantity = Integer.parseInt(etProductQuantity
-							.getText().toString());
-					product.isEmailSent = 0;
+					ContentValues cv = new ContentValues();
+					cv.put(Product.PRODUCT_NAME, etProductName.getText()
+							.toString());
+					cv.put(Product.PRODUCT_PRICE, etProductPrice.getText()
+							.toString());
+					cv.put(Product.PRODUCT_QUANTITY, Integer
+							.parseInt(etProductQuantity.getText().toString()));
+					cv.put(Product.PRODUCT_EMAIL_SENT, 0);
 
-					boolean flag = database.updateProduct(product);
-					if (flag) {
-						Toast.makeText(context, "Product Updated",
-								Toast.LENGTH_SHORT).show();
-						AllProductsFragment.setListAdapter();
-						DialogFragment dialogFragment = (DialogFragment) getFragmentManager()
-								.findFragmentByTag("dialog");
-						if (dialogFragment != null) {
-							dialogFragment.dismiss();
-						}
+					getActivity().getContentResolver().update(
+							ProductsContract.CONTENT_URI, cv,
+							Product.PRODUCT_ID + "=?",
+							new String[] { String.valueOf(productToEdit.id) });
+
+					// Product product = new Product();
+					// product.id = productToEdit.id;
+					// product.name = etProductName.getText().toString();
+					// product.price = etProductPrice.getText().toString();
+					// product.quantity = Integer.parseInt(etProductQuantity
+					// .getText().toString());
+					// product.isEmailSent = 0;
+
+					// boolean flag = database.updateProduct(product);
+					// if (flag) {
+					// Toast.makeText(context, "Product Updated",
+					// Toast.LENGTH_SHORT).show();
+					// AllProductsFragment.setListAdapter();
+					// DialogFragment dialogFragment = (DialogFragment)
+					// getFragmentManager()
+					// .findFragmentByTag("dialog");
+					// if (dialogFragment != null) {
+					// dialogFragment.dismiss();
+					// }
+					// } else {
+					// Toast.makeText(context, "Product not Updated!",
+					// Toast.LENGTH_SHORT).show();
+					// }
+
+					Toast.makeText(context, "Product Updated",
+							Toast.LENGTH_SHORT).show();
+					AllProductsFragment.setListAdapter();
+					DialogFragment dialogFragment = (DialogFragment) getFragmentManager()
+							.findFragmentByTag("dialog");
+					if (dialogFragment != null) {
+						dialogFragment.dismiss();
 					} else {
-						Toast.makeText(context, "Product not Updated!",
+						Toast.makeText(context, "Every field is required!",
 								Toast.LENGTH_SHORT).show();
 					}
-				} else {
-					Toast.makeText(context, "Every field is required!",
-							Toast.LENGTH_SHORT).show();
 				}
+				break;
 			}
-			break;
 		}
 	}
 }

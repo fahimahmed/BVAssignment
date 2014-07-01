@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 
 import com.fahimahmed.bv.MainActivity;
 import com.fahimahmed.bv.R;
+import com.fahimahmed.bv.contentprovider.ProductsContract;
 import com.fahimahmed.bv.database.DatabaseManager;
 import com.fahimahmed.bv.database.Product;
 import com.fahimahmed.bv.fragment.AllProductsFragment;
@@ -90,7 +90,8 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
 							switch (item.getItemId()) {
 							case R.id.menuProductDelete:
-								database.deleteProduct(products.get(position).id);
+//								database.deleteProduct(products.get(position).id);
+								context.getContentResolver().delete(ProductsContract.CONTENT_URI, Product.PRODUCT_ID+"=?", new String[]{String.valueOf(products.get(position).id)});
 								AllProductsFragment.setListAdapter();
 
 								break;

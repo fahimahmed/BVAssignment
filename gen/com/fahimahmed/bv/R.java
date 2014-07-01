@@ -243,6 +243,7 @@ public final class R {
         public static final int popup_menu=0x7f080001;
     }
     public static final class string {
+        public static final int account_authentication_label=0x7f06000d;
         public static final int action_websearch=0x7f060003;
         public static final int app_name=0x7f060000;
         public static final int app_not_available=0x7f060004;
@@ -258,6 +259,8 @@ public final class R {
         public static final int search_hint=0x7f06000b;
     }
     public static final class xml {
-        public static final int searchable=0x7f040000;
+        public static final int authenticator=0x7f040000;
+        public static final int searchable=0x7f040001;
+        public static final int sync_adapter=0x7f040002;
     }
 }
