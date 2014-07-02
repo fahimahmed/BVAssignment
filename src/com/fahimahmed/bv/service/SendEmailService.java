@@ -1,3 +1,7 @@
+/**
+* Not used - due to incorporation of Sync Adapter
+*/
+
 package com.fahimahmed.bv.service;
 
 import java.util.ArrayList;
